@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dkpsdlx3r75la"]
+
+[node name="Hazard" type="Area2D"]
