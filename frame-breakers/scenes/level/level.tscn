@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7v170fc2xxax"]
+[gd_scene load_steps=6 format=3 uid="uid://b7v170fc2xxax"]
 
 [ext_resource type="PackedScene" uid="uid://dt10slsuij5ji" path="res://scenes/level/player.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://tfurqlvn20k7" path="res://scripts/level/level.gd" id="1_nbgty"]
 [ext_resource type="PackedScene" uid="uid://c6swoaqfqyg1w" path="res://scenes/level/walls.tscn" id="2_i166f"]
 [ext_resource type="Script" uid="uid://bq7quspjrfgv6" path="res://scripts/level/holders/walls_holder.gd" id="2_qkmgm"]
+[ext_resource type="PackedScene" uid="uid://by5ucw232myn7" path="res://scenes/level/upper_walls.tscn" id="4_hnne4"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nbgty")
@@ -20,10 +21,17 @@ position = Vector2(-240, 0)
 [node name="wallsB" parent="WallsHolderA" instance=ExtResource("2_i166f")]
 position = Vector2(240, 0)
 
-[node name="WallsHolderB" type="Node2D" parent="."]
-visible = false
+[node name="WallsHolderB" type="Node2D" parent="." node_paths=PackedStringArray("wallA", "wallB")]
+position = Vector2(0, -64)
+script = ExtResource("2_qkmgm")
+wallA = NodePath("UpperWallsA")
+wallB = NodePath("UpperWallsB")
 
-[node name="walls" parent="WallsHolderB" instance=ExtResource("2_i166f")]
+[node name="UpperWallsA" parent="WallsHolderB" instance=ExtResource("4_hnne4")]
+position = Vector2(-240, 0)
+
+[node name="UpperWallsB" parent="WallsHolderB" instance=ExtResource("4_hnne4")]
+position = Vector2(240, 0)
 
 [node name="EnemiesHolder" type="Node2D" parent="."]
 
