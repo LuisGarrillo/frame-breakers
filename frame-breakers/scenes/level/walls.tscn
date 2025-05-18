@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://c6swoaqfqyg1w"]
+[gd_scene load_steps=5 format=4 uid="uid://c6swoaqfqyg1w"]
 
 [ext_resource type="Texture2D" uid="uid://32v6kv74c3x8" path="res://icon.svg" id="1_rmcqv"]
+[ext_resource type="Script" uid="uid://d1fvyo4nwrvw4" path="res://scripts/level/walls.gd" id="2_6vxk4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rmcqv"]
 texture = ExtResource("1_rmcqv")
@@ -30,3 +31,4 @@ sources/3 = SubResource("TileSetAtlasSource_rmcqv")
 [node name="walls" type="TileMapLayer"]
 tile_map_data = PackedByteArray("AAAAAAAAAwABAAAAAAAAAAEAAwABAAEAAAABAAAAAwABAAAAAAABAAEAAwABAAEAAAACAAAAAwABAAAAAAACAAEAAwABAAEAAAADAAAAAwABAAAAAAADAAEAAwABAAEAAAAEAAAAAwABAAAAAAAEAAEAAwABAAEAAAAFAAAAAwABAAAAAAAFAAEAAwABAAEAAAAGAAAAAwABAAAAAAAGAAEAAwABAAEAAAAHAAAAAwABAAAAAAAHAAEAAwABAAEAAAAIAAAAAwABAAAAAAAIAAEAAwABAAEAAAAJAAAAAwABAAAAAAAJAAEAAwABAAEAAAAKAAAAAwABAAAAAAAKAAEAAwABAAEAAAALAAAAAwABAAAAAAALAAEAAwABAAEAAAAMAAAAAwABAAAAAAAMAAEAAwABAAEAAAANAAAAAwABAAAAAAANAAEAAwABAAEAAAAOAAAAAwABAAAAAAAOAAEAAwABAAEAAAA=")
 tile_set = SubResource("TileSet_3masl")
+script = ExtResource("2_6vxk4")

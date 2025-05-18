@@ -5,7 +5,7 @@ class_name Level
 @onready var projectiles_holder: Node2D = $ProjectilesHolder
 @onready var hazard_holder: Node2D = $HazardHolder
 @onready var enemies_holder: Node2D = $EnemiesHolder
-@onready var walls_holder: Node2D = $WallsHolder
+@onready var walls_holder: Node2D = $WallsHolderA
 
 const PLAYER_PROJECTILE = preload("res://scenes/level/projectiles/player_projectile.tscn")
 
