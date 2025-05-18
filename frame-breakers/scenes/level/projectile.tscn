@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsiysokx16l5i"]
+
+[ext_resource type="Script" uid="uid://cd8hxm7ky6dpi" path="res://scripts/level/projectile.gd" id="1_hsdeq"]
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_hsdeq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
