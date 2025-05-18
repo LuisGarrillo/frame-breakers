@@ -11,3 +11,6 @@
 [node name="HazardHolder" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_h3e3j")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -1)
