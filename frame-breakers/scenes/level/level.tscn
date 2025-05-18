@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7v170fc2xxax"]
+[gd_scene load_steps=4 format=3 uid="uid://b7v170fc2xxax"]
 
 [ext_resource type="PackedScene" uid="uid://dt10slsuij5ji" path="res://scenes/level/player.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://tfurqlvn20k7" path="res://scripts/level/level.gd" id="1_nbgty"]
+[ext_resource type="PackedScene" uid="uid://c6swoaqfqyg1w" path="res://scenes/level/walls.tscn" id="2_i166f"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nbgty")
 
-[node name="WallsHolder" type="Node2D" parent="."]
+[node name="WallsHolderA" type="Node2D" parent="."]
+
+[node name="walls" parent="WallsHolderA" instance=ExtResource("2_i166f")]
+position = Vector2(0, 64)
+
+[node name="WallsHolderB" type="Node2D" parent="."]
+visible = false
+
+[node name="walls" parent="WallsHolderB" instance=ExtResource("2_i166f")]
 
 [node name="EnemiesHolder" type="Node2D" parent="."]
 
@@ -16,6 +25,7 @@ script = ExtResource("1_nbgty")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -1)
+zoom = Vector2(4, 4)
 
 [node name="ProjectilesHolder" type="Node2D" parent="."]
 
