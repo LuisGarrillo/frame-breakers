@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name Player
+@onready var shoot_cooldown: Timer = $ShootCooldown
 
 signal sig_die
 signal add_projectile
@@ -15,10 +16,11 @@ var upper_range = Global.carril_size
 var is_locked := false
 
 func _input(event: InputEvent) -> void:
+	if is_locked:
+		return
 	
-	if Input.is_action_just_pressed("Move"):
+	if Input.is_action_just_pressed("Move") and (event.keycode == KEY_UP or event.keycode == KEY_DOWN):
 		move(direction_map[event.keycode])
-	
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
@@ -33,6 +35,8 @@ func move(direction) -> void:
 	
 func attack() -> void:
 	add_projectile.emit()
+	is_locked = true
+	shoot_cooldown.start()
 	
 func damage() -> void:
 	var change_value = 0.75 * Global.speed
@@ -40,3 +44,7 @@ func damage() -> void:
 
 func die() -> void:
 	sig_die.emit()
+
+
+func _on_shoot_cooldown_timeout() -> void:
+	is_locked = false
