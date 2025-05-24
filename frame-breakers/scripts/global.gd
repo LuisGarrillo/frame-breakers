@@ -5,3 +5,5 @@ var speed := 100
 
 var scren_height : int = 270
 var screen_width : int = 480
+
+var wall_width = 640
