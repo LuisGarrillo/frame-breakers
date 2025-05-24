@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsiysokx16l5i"]
+[gd_scene load_steps=2 format=3 uid="uid://csvrgpbdvvmyf"]
 
 [ext_resource type="Script" uid="uid://cd8hxm7ky6dpi" path="res://scripts/level/projectile.gd" id="1_hsdeq"]
 

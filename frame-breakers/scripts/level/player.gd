@@ -9,11 +9,23 @@ signal add_projectile
 var direction_map : Dictionary[int, int] = {
 	KEY_DOWN : 1,
 	KEY_UP: -1,
+	KEY_RIGHT: 1,
+	KEY_LEFT: -1
 }
 
 var lower_range = Global.carril_size * -1
 var upper_range = Global.carril_size
+
+var right_range = (Global.screen_width / 2) - 32
+var left_range = ((Global.screen_width / 2) - 32) * -1
+
 var is_locked := false
+
+var initial_speed = Global.speed
+
+func _physics_process(delta: float) -> void:
+	move_horizontal(Input.get_axis("left", "right"), delta)
+	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if is_locked:
@@ -32,7 +44,22 @@ func move(direction) -> void:
 		return
 		
 	position.y += change_value
+
+func move_horizontal(direction, delta) -> void:
+	if not direction:
+		return
+		
+	var change_value
+	if direction > 0:
+		change_value = max(initial_speed * delta - ((Global.speed * delta) / 2), 1)
+	else:
+		change_value = Global.speed * delta * -1
 	
+	if position.x + change_value < left_range or position.y + change_value > right_range:
+		return
+	
+	position.x += change_value
+
 func attack() -> void:
 	add_projectile.emit()
 	is_locked = true
