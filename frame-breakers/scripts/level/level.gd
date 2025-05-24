@@ -27,5 +27,5 @@ func _physics_process(delta: float) -> void:
 func _on_player_add_projectile() -> void:
 	var new_projectile = PLAYER_PROJECTILE.instantiate()
 	projectiles_holder.add_child(new_projectile)
-	new_projectile.position.y = player.position.y
+	new_projectile.position = player.position
 	new_projectile.set_up("Ally", 1)
