@@ -16,8 +16,8 @@ var direction_map : Dictionary[int, int] = {
 var lower_range = Global.carril_size * -1
 var upper_range = Global.carril_size
 
-var right_range = (Global.screen_width / 2) - 32
-var left_range = ((Global.screen_width / 2) - 32) * -1
+var right_range = (Global.screen_width / 2) - 32 * 2
+var left_range = right_range * -1
 
 var is_locked := false
 
@@ -31,8 +31,7 @@ func _input(event: InputEvent) -> void:
 	if is_locked:
 		return
 	
-	if Input.is_action_just_pressed("Move") and (event.keycode == KEY_UP or event.keycode == KEY_DOWN):
-		move(direction_map[event.keycode])
+	move(Input.get_axis("up", "down"))
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
@@ -55,7 +54,7 @@ func move_horizontal(direction, delta) -> void:
 	else:
 		change_value = Global.speed * delta * -1
 	
-	if position.x + change_value < left_range or position.y + change_value > right_range:
+	if position.x + change_value < left_range or position.x + change_value > right_range:
 		return
 	
 	position.x += change_value
