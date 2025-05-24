@@ -7,10 +7,11 @@ var masks_map: Dictionary[String, int] = {
 	"Enemy": 0
 }
 var direction
+@export var increase = 2
 
 
 func _physics_process(delta: float) -> void:
-	position.x += Global.speed * delta * direction
+	position.x += Global.speed * increase * delta * direction
 	if position.x < limit * -1 or position.x > limit:
 		queue_free()
 
