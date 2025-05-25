@@ -2,12 +2,9 @@ extends Area2D
 class_name Projectile
 
 @export var limit : int = 960
-var masks_map: Dictionary[String, int] = {
-	"Ally": 1,
-	"Enemy": 0
-}
 var direction
-@export var increase = 2
+var type : String
+@export var increase = 1.25
 
 
 func _physics_process(delta: float) -> void:
@@ -15,14 +12,14 @@ func _physics_process(delta: float) -> void:
 	if position.x < limit * -1 or position.x > limit:
 		queue_free()
 
-func set_up(mode, setup_direction) -> void:
-	set_collision_mask_value(masks_map[mode], true)
+func set_up(setup_direction, setup_type) -> void:
 	direction = setup_direction
+	type = setup_type
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if not body is CharacterBody2D:
-		return
-	
-	if body is Player:
-		body.damage()
+func hitted():
+	queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	print("hi")
