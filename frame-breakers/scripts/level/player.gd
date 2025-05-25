@@ -65,7 +65,7 @@ func attack() -> void:
 	shoot_cooldown.start()
 	
 func damage() -> void:
-	var change_value = 0.75 * Global.speed
+	var change_value = 0.125 * Global.speed
 	position.x -= change_value
 
 func die() -> void:
@@ -74,3 +74,9 @@ func die() -> void:
 
 func _on_shoot_cooldown_timeout() -> void:
 	is_locked = false
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is Projectile and area.type == "Enemy":
+		damage()
+		area.hitted()
