@@ -11,6 +11,7 @@ class_name Level
 @export var time_ratio : int = 30
 @export var speed_change_ratio : float = 1.2
 
+var active : bool = false
 var frame_accumulator : float = 0
 var accumulator := 0
 var increment : int
@@ -30,6 +31,9 @@ const ENEMY_PROJECTILE = preload("res://scenes/level/projectiles/enemy_projectil
 const ENEMY = preload("res://scenes/level/enemy.tscn")
 
 func _physics_process(delta: float) -> void:
+	if not active:
+		return
+	
 	if increment == 5:
 		return
 	
@@ -43,6 +47,9 @@ func _physics_process(delta: float) -> void:
 		increment += 1
 		check_increment()
 		Global.speed *= speed_change_ratio
+
+func _input(event: InputEvent) -> void:
+	
 
 func check_increment() -> void:
 	if increment == 2:

@@ -9,6 +9,9 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nbgty")
 time_ratio = 10
+speed_change_ratio = null
+enemy_wait_shoot_decreaser = null
+enemy_wait_shoot = null
 
 [node name="WallsHolderA" type="Node2D" parent="." node_paths=PackedStringArray("wallA", "wallB")]
 position = Vector2(0, 64)
@@ -39,6 +42,7 @@ position = Vector2(400, 0)
 [node name="HazardHolder" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_h3e3j")]
+position = Vector2(-277, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -1)
@@ -48,7 +52,6 @@ zoom = Vector2(4, 4)
 
 [node name="EnemyGeneration" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [connection signal="add_projectile" from="Player" to="." method="_on_player_add_projectile"]
 [connection signal="timeout" from="EnemyGeneration" to="." method="_on_enemy_generation_timeout"]

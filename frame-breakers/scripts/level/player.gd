@@ -19,7 +19,7 @@ var upper_range = Global.carril_size
 var right_range = (Global.screen_width / 2) - 32 * 2
 var left_range = right_range * -1
 
-var is_locked := false
+var is_locked := true
 
 var initial_speed = Global.speed
 
