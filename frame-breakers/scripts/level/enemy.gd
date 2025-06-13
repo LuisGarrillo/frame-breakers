@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var shoot_cooldown : float
 

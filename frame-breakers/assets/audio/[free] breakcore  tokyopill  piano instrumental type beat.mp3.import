@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clsd0y84v7n08"
+path="res://.godot/imported/[free] breakcore  tokyopill  piano instrumental type beat.mp3-ea08a91be3bf1fbdaee3090691c0f169.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/[free] breakcore  tokyopill  piano instrumental type beat.mp3"
+dest_files=["res://.godot/imported/[free] breakcore  tokyopill  piano instrumental type beat.mp3-ea08a91be3bf1fbdaee3090691c0f169.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

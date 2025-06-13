@@ -1,10 +1,11 @@
 extends CharacterBody2D
 class_name Player
 @onready var shoot_cooldown: Timer = $ShootCooldown
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 signal sig_die
 signal add_projectile
-
+signal start_finish
 
 var direction_map : Dictionary[int, int] = {
 	KEY_DOWN : 1,
@@ -20,10 +21,30 @@ var right_range = (Global.screen_width / 2) - 32 * 2
 var left_range = right_range * -1
 
 var is_locked := true
+var is_started := false
 
 var initial_speed = Global.speed
+var enter_limit = 0
+
+func _ready() -> void:
+	animated_sprite_2d.play("default")
 
 func _physics_process(delta: float) -> void:
+	if is_started:
+		if position.x < enter_limit:
+			var change_value = roundi(((Global.speed * delta) / 3) * 4)
+			position.x += change_value
+			
+		elif position.x == enter_limit:
+			is_started = false
+			is_locked = false
+			start_finish.emit()
+			
+		return
+	
+	if is_locked:
+		return
+	
 	move_horizontal(Input.get_axis("left", "right"), delta)
 	move_and_slide()
 
@@ -67,9 +88,14 @@ func attack() -> void:
 func damage() -> void:
 	var change_value = 0.125 * Global.speed
 	position.x -= change_value
+	if position.x < left_range:
+		die()
 
 func die() -> void:
 	sig_die.emit()
+	is_locked = true
+	visible = false
+	set_collision_layer_value(1, false)
 
 
 func _on_shoot_cooldown_timeout() -> void:

@@ -1,17 +1,100 @@
-[gd_scene load_steps=4 format=3 uid="uid://g1bgt3fekepx"]
+[gd_scene load_steps=12 format=3 uid="uid://g1bgt3fekepx"]
 
-[ext_resource type="Texture2D" uid="uid://32v6kv74c3x8" path="res://icon.svg" id="1_4b4ih"]
 [ext_resource type="Script" uid="uid://cy48xfk23f8ly" path="res://scripts/level/enemy.gd" id="1_g2upe"]
+[ext_resource type="Texture2D" uid="uid://crwnxh3hgv6j8" path="res://assets/sprites/enemy-frame-breakers-Sheet.png" id="2_g2upe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2upe"]
 size = Vector2(32, 24)
 
+[sub_resource type="Animation" id="Animation_vxgdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g2upe"]
+resource_name = "disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6ays"]
+_data = {
+&"RESET": SubResource("Animation_vxgdo"),
+&"disappear": SubResource("Animation_g2upe")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxgdo"]
+atlas = ExtResource("2_g2upe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ays"]
+atlas = ExtResource("2_g2upe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1evb"]
+atlas = ExtResource("2_g2upe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knc8i"]
+atlas = ExtResource("2_g2upe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvuuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxgdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ays")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1evb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knc8i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_g2upe")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.1875)
-texture = ExtResource("1_4b4ih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g2upe")
@@ -24,7 +107,16 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_g2upe")
 
 [node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h6ays")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kvuuh")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
