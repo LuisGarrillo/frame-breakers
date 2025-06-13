@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dtthiqneyhv0y"]
+
+[ext_resource type="FontFile" uid="uid://dn44wuw8m5sw7" path="res://assets/fonts/monogram-extended.ttf" id="1_36brn"]
+
+[resource]
+font = ExtResource("1_36brn")

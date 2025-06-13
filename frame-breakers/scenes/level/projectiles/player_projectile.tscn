@@ -1,10 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4imd6i00vf5q"]
+[gd_scene load_steps=8 format=3 uid="uid://d4imd6i00vf5q"]
 
 [ext_resource type="Script" uid="uid://cd8hxm7ky6dpi" path="res://scripts/level/projectile.gd" id="1_gel6u"]
-[ext_resource type="Texture2D" uid="uid://32v6kv74c3x8" path="res://icon.svg" id="2_cthds"]
+[ext_resource type="Texture2D" uid="uid://brrkqgdrk3qka" path="res://assets/sprites/ally_shot-Sheet.png" id="2_gel6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfhf3"]
 size = Vector2(8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cthds"]
+atlas = ExtResource("2_gel6u")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfhf3"]
+atlas = ExtResource("2_gel6u")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yui00"]
+atlas = ExtResource("2_gel6u")
+region = Rect2(32, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52uqj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cthds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfhf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yui00")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="PlayerProjectile" type="Area2D"]
 collision_layer = 8
@@ -12,9 +41,9 @@ collision_mask = 2
 script = ExtResource("1_gel6u")
 metadata/_custom_type_script = "uid://cd8hxm7ky6dpi"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0625, 0.03125)
-texture = ExtResource("2_cthds")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pfhf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_52uqj")
+frame_progress = 0.76583
